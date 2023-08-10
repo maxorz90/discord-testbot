@@ -4,15 +4,22 @@ const { REST, Routes } = require('discord.js');
 const commands = [
   {
     name: 'hey',
-    desription: 'Replies is hey',
+    description: 'Replies is hey',
   },
 ];
 
-const rest = new REST({ version: '10'}).setToken(process.env.TOKEN);
+const rest = new REST({ version: '10' }).setToken(process.env.DISCORD_TOKEN);
 
 (async () => {
   try {
-
+    await rest.put(
+      Routes.applicationGuildCommands(
+        process.env.APP_ID,
+        process.env.GUILD_ID
+      ),
+      { body: commands }
+    );
+    console.log('Slash command were registered successfully');
   } catch (error) {
     console.log(`There was an error: ${error}`);
   }
