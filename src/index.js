@@ -1,4 +1,4 @@
-const { Client, IntentsBitField, EmbedBuilder } = require("discord.js");
+const { Client, IntentsBitField, EmbedBuilder, ActivityType } = require("discord.js");
 require("dotenv").config();
 
 // Create new client object
@@ -14,6 +14,11 @@ const client = new Client({
 // console log when the client is logged in
 client.on('ready', (c) => {
   console.log(`Bot '${c.user.tag}' is online`);
+
+  client.user.setActivity({
+    name: "Testing operational parameters",
+    type: ActivityType.Watching,
+  })
 });
 
 // Reply to any non-bot message 
