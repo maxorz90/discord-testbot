@@ -11,6 +11,9 @@ module.exports = async (client) => {
       testServer
     );
 
+    // Use this to delete old untracked commands
+    // applicationCommands.delete('1139610092849856582');
+
     for (const localCommand of localCommands) {
       const { name, description, options } = localCommand;
 
@@ -51,6 +54,6 @@ module.exports = async (client) => {
       }
     }
   } catch (error) {
-    console.log(`TThere was an error: ${error}`);
+    console.log(`There was an error: ${error}`);
   }
 };
