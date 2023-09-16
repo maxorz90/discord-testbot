@@ -2,25 +2,25 @@ const { Interaction, Client, ApplicationCommandOptionType, PermissionFlagsBits }
 
 module.exports = {
   deleted: false,
-  name: 'ban',
-  description: 'Strikes down the banhammer on some poor fool (which I pity)!',
+  name: 'kick',
+  description: 'Strikes down the kickhammer on some poor fool (which I pity)!',
   // devOnly: Boolean,
   // testOnly: Boolean,
   options: [
     {
       name: 'target-user',
-      description: 'The user to ban.',
+      description: 'The user to kick.',
       required: true,
       type: ApplicationCommandOptionType.Mentionable,
     },
     {
       name: 'reason',
-      description: 'The reason for banning.',
+      description: 'The reason for kicking.',
       type: ApplicationCommandOptionType.String,
     },
   ],
-  permissionsRequired: [PermissionFlagsBits.BanMembers],
-  botPermissions: [PermissionFlagsBits.BanMembers],
+  permissionsRequired: [PermissionFlagsBits.KickMembers],
+  botPermissions: [PermissionFlagsBits.KickMembers],
 
   /**
    *
@@ -50,22 +50,23 @@ module.exports = {
     const botRolePosition = interaction.guild.members.me.roles.highest.position; // Highest role of the bot
 
     if (targetUserRolePosition >= requestUserRolePosition) {
-      await interaction.editReply("You can't ban that user, because they have the same or higher privliges as you.");
+      await interaction.editReply("You can't kick that user, because they have the same or higher privliges as you.");
       return;
     }
 
     if (targetUserRolePosition >= botRolePosition) {
-      await interaction.editReply("I can't ban that user, because they have the same or higher privliges as me.");
+      await interaction.editReply("I can't kick that user, because they have the same or higher privliges as me.");
       return;
     }
 
-    // Ban the user.
+    // kick the user.
     try {
-      await targetUser.ban({ reason });
-      await interaction.editReply(`User ${targetUser} was succesfully banned\nReason: ${reason}`);
+      await targetUser.kick(reason);
+      await interaction.editReply(`User ${targetUser} was succesfully kicked\nReason: ${reason}`);
     } catch (error) {
-      console.log(`There was an error with the ban command: ${error}`);
+      console.log(`There was an error with the kick command: ${error}`);
     }
 
   },
 };
+
