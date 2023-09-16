@@ -1,7 +1,7 @@
 const { Interaction, Client, ApplicationCommandOptionType, PermissionFlagsBits } = require('discord.js');
 
 module.exports = {
-  deleted: false,
+  deleted: true,
   name: 'ban',
   description: 'Strikes down the banhammer on some poor fool (which I pity)!',
   // devOnly: Boolean,
@@ -23,10 +23,10 @@ module.exports = {
   botPermissions: [PermissionFlagsBits.BanMembers],
 
   /**
-   *
-   * @param {Client} client
-   * @param {Interaction} interaction
-   */
+  *
+  * @param {Client} client
+  * @param {Interaction} interaction
+  */
 
   callback: async (client, interaction) => {
     const targetUserId = interaction.options.get('target-user').value;

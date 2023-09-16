@@ -1,7 +1,7 @@
 const { Interaction, Client, ApplicationCommandOptionType, PermissionFlagsBits } = require('discord.js');
 
 module.exports = {
-  deleted: false,
+  deleted: true,
   name: 'kick',
   description: 'Strikes down the kickhammer on some poor fool (which I pity)!',
   // devOnly: Boolean,
